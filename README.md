@@ -8,7 +8,7 @@ More languages may be added over time as I continue learning.
 
 ## Repository Structure
 
-/<year_languageUsed>/<day>
+/<year_languageUsed>/<day>/
 
 Example:
 
