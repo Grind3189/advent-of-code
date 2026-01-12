@@ -1,33 +1,6 @@
 -- Day 4: Printing Department--
 
--- Parse input.txt add "." placeholder at the first and
--- last position of the table and each line of string
--- so if "@@@" would be ->  
--- "....."
--- ".@@@."
--- "....."
--- now we dont have to worry about index out of bounds
-local file = assert(io.open("input.txt", "r"))
-local input = {}
-if file then
-  local line_len = 0
-  for line in file:lines() do
-    local parsed_line = "." .. line .. "."
-    table.insert(input, parsed_line)
-
-    if line_len == 0 then
-      line_len = #parsed_line
-    end
-  end
-
-  table.insert(input, 1, string.rep(".", line_len))
-  table.insert(input, string.rep(".", line_len))
-else
-  print("Error: Could not open file for reading.")
-end
-
-
-local function part_one()
+local function part_one(input)
   local total = 0
   -- Loop thorough each value excluding placeholders
   for i = 2, #input - 1 do
@@ -59,8 +32,7 @@ local function part_one()
 
   end
 
-  print("Part one: ", total)
-
+  return total
 end
 
 local function replace_char(str, position)
@@ -70,7 +42,7 @@ local function replace_char(str, position)
   return prefix .. "." .. postfix
 end
 
-local function part_two()
+local function part_two(input)
   local go_loop = true
   local total = 0
 
@@ -112,9 +84,40 @@ local function part_two()
     end
   end
 
-  print("Part two: ", total)
+  return total
 end
 
-part_one()
-part_two()
+-- Modify the input, add a sequence of "." placeholders
+-- at the first and last index of the table and
+-- first and last of each line of input
+-- Example input "@@@" would be:
+-- "....."
+-- ".@@@."
+-- "....."
+-- now we dont have to worry about index out of bounds
+local file = assert(io.open("input.txt", "r"))
+local input = {}
+if file then
+
+  local line_len = 0
+  for line in file:lines() do
+    local parsed_line = "." .. line .. "."
+    table.insert(input, parsed_line)
+
+    if line_len == 0 then
+      line_len = #parsed_line
+    end
+  end
+
+  table.insert(input, 1, string.rep(".", line_len))
+  table.insert(input, string.rep(".", line_len))
+
+  file:close()
+else
+  print("Error: Could not open file for reading.")
+end
+
+print("Part 1: ", part_one(input))
+print("Part 2: ", part_two(input))
+
 

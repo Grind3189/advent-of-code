@@ -1,18 +1,12 @@
 --- Day 1: Secret Entrance
 
-local input = {}
-
-for line in io.lines("input.txt") do
-  table.insert(input, line)
-end
-
-local function part_one()
+local function part_one(input)
   local dial, total = 50, 0
 
-  for _, line in ipairs(input) do
-    -- Seperate each line to direction and number of turn
+  for _, value in ipairs(input) do
+    -- Get direction and numOfTurn from value 
     -- Example, R45 to 'R' and 45
-    local direction, numOfTurn = string.sub(line, 1, 1), tonumber(string.sub(line, 2))
+    local direction, numOfTurn = string.sub(value, 1, 1), tonumber(string.sub(value, 2))
 
     -- Execute logic
     local count = 0
@@ -42,17 +36,16 @@ local function part_one()
 
   end
 
-print("Part 1:", total)
-
+  return total
 end
 
-local function part_two()
+local function part_two(input)
   local dial, total = 50, 0
 
-  for _, line in ipairs(input) do
-    -- Seperate each line to direction and number of turn
+  for _, value in ipairs(input) do
+    -- Get direction and numOfTurn from value 
     -- Example, R45 to 'R' and 45
-    local direction, numOfTurn = string.sub(line, 1, 1), tonumber(string.sub(line, 2))
+    local direction, numOfTurn = string.sub(value, 1, 1), tonumber(string.sub(value, 2))
 
     -- Execute logic
     local count = 0
@@ -85,10 +78,14 @@ local function part_two()
 
   end
 
-print("Part 2:", total)
+  return total
 end
 
+local input = {}
+for line in io.lines("input.txt") do
+  table.insert(input, line)
+end
 
-part_one()
-part_two()
+print("Part 1: ", part_one(input))
+print("Part 2: ", part_two(input))
 

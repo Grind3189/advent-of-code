@@ -1,14 +1,4 @@
 --- Day 2: Gift Shop ---
-local file = assert(io.open("input.txt", "r"))
-local content = file:read("a")
-file:close()
-
-local input = {}
---Match non-comma and non-whitespace characters
-for word in string.gmatch(content, "[^,%s]+") do
-  table.insert(input, word)
-end
-
 
 ---Split text in half: e.g. meow to me ow, LOL to LO L
 local function split_half(str)
@@ -19,8 +9,7 @@ local function split_half(str)
   return first_half, second_half
 end
 
-local function part_one()
-
+local function part_one(input)
   local invalid_ids = 0
   for _, value in ipairs(input) do
 
@@ -42,11 +31,12 @@ local function part_one()
     end
   end
 
-  print("Part 1: ", invalid_ids)
+  return invalid_ids
+
 end
 
 
-local function part_two()
+local function part_two(input)
 
   local invalid_ids = 0
   for _, value in ipairs(input) do
@@ -83,9 +73,20 @@ local function part_two()
 
   end
 
-  print("Part 2: ", invalid_ids)
+  return invalid_ids
 
 end
 
-part_one()
-part_two()
+local file = assert(io.open("input.txt", "r"))
+local content = file:read("a")
+file:close()
+
+local input = {}
+--Match non-comma and non-whitespace characters
+for word in string.gmatch(content, "[^,%s]+") do
+  table.insert(input, word)
+end
+
+print("Part 1: ", part_one(input))
+print("Part 2: ", part_two(input))
+
