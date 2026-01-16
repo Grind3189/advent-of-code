@@ -25,7 +25,6 @@ local function part_one(available_ids, fresh_ids)
 end
 
 local function part_two(fresh_ids)
-
   local invalid_ranges_index = {}
   local num_of_non_overlap = 0
   for i, current_range in ipairs(fresh_ids) do
