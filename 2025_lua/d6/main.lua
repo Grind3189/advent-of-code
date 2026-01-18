@@ -130,7 +130,6 @@ local function get_input()
 
   local operators = get_operators()
   for line in io.lines("input.txt") do
-    
     if string.find(line, "[%*%+]") then
       break
     end
