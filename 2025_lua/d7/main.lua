@@ -2,7 +2,6 @@
 local inspect = require("inspect")
 
 local SPLITTER = "^"
-
 -- Replace specific "." of a string with "|"
 local function replace_dot(orig_str, index, is_splitter)
   local result = ""
